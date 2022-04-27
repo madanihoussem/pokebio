@@ -1,0 +1,33 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }}
+    <button>{{ button_label|default('Save') }}</button> #}
+    <div class="row">
+        <div class="col-md-6 form-group">
+            {{ form_errors(form.nom) }}
+            {{ form_widget(form.nom) }}
+
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0">
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+    </div>
+    <div class="form-group mt-3">
+        {{ form_errors(form.objet) }}
+        {{ form_widget(form.objet) }}
+    </div>
+    <div class="form-group mt-3">
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message) }}
+    </div>
+    <div class="form-group d-flex">
+        <input type="checkbox" class="form-check pt-0 m-0" name="check" id="check_box" required>
+        <label for="check_box" style="padding-top: 10px; margin-left: 10px;">En cochant cette case, 
+        je consens à ce que le site PokéBio stocke les informations indiquées dans le formulaire pour que je puisse obtenir une réponse à ma demande. 
+        Aucune autre utilisation ne sera effectuée avec vos informations.</label>
+    </div>
+    <div class="text-center">
+        {# <button type="submit">Envoyer</button> #}
+        <button type="submit">{{ button_label|default('Envoyer') }}</button>
+    </div>
+{{ form_end(form) }}

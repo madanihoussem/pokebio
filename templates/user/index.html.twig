@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+<main>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark p-2" aria-label="Sixth navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PokéBio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample06">
+        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{path('dashboard')}}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('produits_index')}}">Produits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{path('contacts_index')}}">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{path('blog_index')}}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{path('user_index')}}">User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{path('home')}}">Site</a>
+          </li>
+          
+          
+        </ul>
+        <form>
+          <a href="{{path('app_logout')}}" type="button" placeholder="Search" aria-label="Search">Déconnexion</a>
+
+        </form>
+      </div>
+    </div>
+  </nav>
+    <div class="container mt-5">
+
+    <h1>User index</h1>
+    <a href="{{ path('user_new') }}">Create new</a>
+  
+    <table class="table border">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.nom }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    </main>
+
+{% endblock %}
